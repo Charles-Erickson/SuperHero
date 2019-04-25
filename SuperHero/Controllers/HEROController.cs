@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SuperHero.Models;
 
 namespace SuperHero.Controllers
 {
-    public class HEROController : Controller
+    public class HeroController : Controller
     {
+
+        public ApplicationDbContext Db { get; set; }
         // GET: HERO
+
+        public HeroController(ApplicationDbContext db)
+        {
+          Db = db;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -28,17 +37,27 @@ namespace SuperHero.Controllers
 
         // POST: HERO/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Hero hero)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    Db.Heros.Add(hero);
+                    Db.SaveChanges();
 
-                return RedirectToAction("Index");
+                    // TODO: Add insert logic here
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(hero);
+                }
             }
             catch
             {
-                return View();
+                return View(hero);
             }
         }
 
@@ -50,7 +69,7 @@ namespace SuperHero.Controllers
 
         // POST: HERO/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Hero hero)
         {
             try
             {
@@ -72,7 +91,7 @@ namespace SuperHero.Controllers
 
         // POST: HERO/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Hero hero)
         {
             try
             {
