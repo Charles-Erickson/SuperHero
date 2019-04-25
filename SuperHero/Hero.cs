@@ -10,5 +10,10 @@ namespace SuperHero
     {
         [Key]
         public int Id { get; set; }
+        public string HeroName { get; set; }
+        public string AlterEgo { get; set; }
+        public string SuperPower { get; set; }
+        public string SecondaryPower { get; set; }
+        public string Catchphrase { get; set; }
     }
 }
