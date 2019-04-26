@@ -25,7 +25,7 @@ namespace SuperHero.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(Db.Heros.ToList());
         }
 
         // GET: HERO/Details/5
@@ -88,7 +88,7 @@ namespace SuperHero.Controllers
                     heroFromDb.SecondaryPower = hero.SecondaryPower;
                     heroFromDb.AlterEgo = hero.AlterEgo;
                     heroFromDb.Catchphrase = hero.Catchphrase;
-
+                    Db.SaveChanges();
                 }
                 // TODO: Add update logic here
 
@@ -103,7 +103,8 @@ namespace SuperHero.Controllers
         // GET: HERO/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var hero = Db.Heros.Find(id);
+            return View(hero);
         }
 
         // POST: HERO/Delete/5
@@ -112,6 +113,11 @@ namespace SuperHero.Controllers
         {
             try
             {
+                if (ModelState.IsValid)
+                {
+                    Db.Heros.Remove(hero);
+                    Db.SaveChanges();
+                }
                 // TODO: Add delete logic here
 
                 return RedirectToAction("Index");
