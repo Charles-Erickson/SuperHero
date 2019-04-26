@@ -70,7 +70,8 @@ namespace SuperHero.Controllers
         // GET: HERO/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var hero = Db.Heros.Find(id);
+            return View(hero);
         }
 
         // POST: HERO/Edit/5
@@ -81,8 +82,13 @@ namespace SuperHero.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Db.Heros.Where(c => id == c.Id).Single();
-                    Db.Heros.
+                    var heroFromDb = Db.Heros.Find(id);
+                    heroFromDb.HeroName = hero.HeroName;
+                    heroFromDb.SuperPower = hero.SuperPower;
+                    heroFromDb.SecondaryPower = hero.SecondaryPower;
+                    heroFromDb.AlterEgo = hero.AlterEgo;
+                    heroFromDb.Catchphrase = hero.Catchphrase;
+
                 }
                 // TODO: Add update logic here
 
