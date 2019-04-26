@@ -13,10 +13,15 @@ namespace SuperHero.Controllers
         public ApplicationDbContext Db { get; set; }
         // GET: HERO
 
-        public HeroController(ApplicationDbContext db)
+        public HeroController()
         {
-          Db = db;
+            Db = new ApplicationDbContext();
         }
+
+        //public HeroController(ApplicationDbContext db)
+        //{
+        //  Db = db;
+        //}
 
         public ActionResult Index()
         {
@@ -26,6 +31,7 @@ namespace SuperHero.Controllers
         // GET: HERO/Details/5
         public ActionResult Details(int id)
         {
+            Hero hero;
             return View();
         }
 
@@ -73,6 +79,10 @@ namespace SuperHero.Controllers
         {
             try
             {
+                if (ModelState.IsValid)
+                {
+                    Db.Heros.Where(c => id == c.Id).Single();
+                }
                 // TODO: Add update logic here
 
                 return RedirectToAction("Index");

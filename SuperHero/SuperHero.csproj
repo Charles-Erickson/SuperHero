@@ -180,7 +180,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hero.cs" />
+    <Compile Include="Models\Hero.cs" />
     <Compile Include="Migrations\201904251820239_Firstmigration.cs" />
     <Compile Include="Migrations\201904251820239_Firstmigration.Designer.cs">
       <DependentUpon>201904251820239_Firstmigration.cs</DependentUpon>
@@ -249,6 +249,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Hero\Create.cshtml" />
+    <Content Include="Views\Hero\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
