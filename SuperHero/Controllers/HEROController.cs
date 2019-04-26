@@ -31,8 +31,8 @@ namespace SuperHero.Controllers
         // GET: HERO/Details/5
         public ActionResult Details(int id)
         {
-            Hero hero;
-            return View();
+            Hero hero = Db.Heros.Find(id);
+            return View(hero);
         }
 
         // GET: HERO/Create
@@ -82,6 +82,7 @@ namespace SuperHero.Controllers
                 if (ModelState.IsValid)
                 {
                     Db.Heros.Where(c => id == c.Id).Single();
+                    Db.Heros.
                 }
                 // TODO: Add update logic here
 
