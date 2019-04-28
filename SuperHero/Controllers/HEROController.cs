@@ -115,7 +115,8 @@ namespace SuperHero.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Db.Heros.Remove(hero);
+                    var heroToRemove = Db.Heros.Find(id);
+                    Db.Heros.Remove(heroToRemove);
                     Db.SaveChanges();
                 }
                 // TODO: Add delete logic here
